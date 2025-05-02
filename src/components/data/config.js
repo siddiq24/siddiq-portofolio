@@ -69,23 +69,23 @@ export const Number = [
     }
 ];
 
-export const services =[
+export const services = [
     {
-        id:1,
+        id: 1,
         title: 'WEB DEVELOPMENT',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos natus atque nihil laudantium beatae ad. Sed quia labore maiores officia.',
+        description: 'Building responsive and dynamic websites using modern web technologies to meet client requirements.',
     },
     {
-        id:2,
+        id: 2,
         title: 'FRONT END DEVELOPMENT',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos natus atque nihil laudantium beatae ad. Sed quia labore maiores officia.',
+        description: 'Creating visually appealing and user-friendly interfaces with a focus on performance and accessibility.',
     },
     {
-        id:3,
+        id: 3,
         title: 'WEB DESIGN',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos natus atque nihil laudantium beatae ad. Sed quia labore maiores officia.',
+        description: 'Designing intuitive and aesthetically pleasing website layouts and user experiences.',
     }
-]
+];
 
 //Skills Section
 export const skills = [
@@ -96,23 +96,23 @@ export const skills = [
     },
     {
         skill: 'Three.js',
-        percentage: 70,
+        percentage: 40,
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg',
     },
     {
         skill: 'Tailwind CSS',
-        percentage: 70,
+        percentage: 80,
         icon: 'https://img.icons8.com/color/40/tailwindcss.png',
 
     },
     {
         skill: 'Figma',
-        percentage: 70,
+        percentage: 75,
         icon: 'https://img.icons8.com/color/40/figma.png',
     },
     {
         skill: 'Vue.js',
-        percentage: 70,
+        percentage: 7,
         icon: 'https://img.icons8.com/fluency/40/vuejs.png',
     }
 ];
@@ -173,36 +173,38 @@ export const education = [
     },
 ];
 //Project Section
+import foto from '/portofolio.jpg';
+
 
 export const projects = [
     {
         id: 1,
-        title: '1. Portfolio Website',
+        title: 'Portfolio Website',
         description: 'A personal portfolio website showcasing my skills, projects, and experience. Built using React.js and Tailwind CSS.',
-        imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
+        imgSrc: foto,
     },
     {
         id: 2,
-        title: '2. E-commerce Platform',
+        title: 'E-commerce Platform',
         description: 'An e-commerce platform with features like product listing, shopping cart, and payment integration. Developed using Vue.js and Firebase.',
-        imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0',
+        imgSrc: 'https://i.pinimg.com/736x/7b/54/10/7b5410a550059972eb8b3b16c9fe0e53.jpg',
     },
     {
         id: 3,
-        title: '3. 3D Visualization App',
+        title: '3D Visualization App',
         description: 'A web application for 3D model visualization and interaction, built using Three.js and React.js.',
-        imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f',
+        imgSrc: 'https://i.pinimg.com/736x/d2/13/6c/d2136cd1cda289cd31fb7470863ca910.jpg',
     },
     {
         id: 4,
-        title: '4. Blog Platform',
+        title: 'Blog Platform',
         description: 'A blogging platform allowing users to create, edit, and share blog posts. Developed using React.js and Node.js.',
-        imageUrl: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80'
+        imgSrc: 'https://i.pinimg.com/736x/15/ee/3d/15ee3d6e6b30e35fd897f4d37e18abd2.jpg',
     },
     {
         id: 5,
-        title: '5. Social Media App',
+        title: 'Social Media App',
         description: 'A social media application with features like user profiles, posts, and comments. Built using React Native and Firebase.',
-        imageUrl: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61',
+        imgSrc: 'https://i.pinimg.com/736x/6b/86/15/6b86154b6b167074620503cfa883a151.jpg',
     }
 ];

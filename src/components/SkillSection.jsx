@@ -59,12 +59,12 @@ const SkillCircle = ({ skill, percentage, icon }) => {
 
 const SkillSection = () => {
   return (
-    <section className='relative' id='skills'>
+    <section className='relative snap-start' id='skills'>
       <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] left-10 top-0 md:block'></header>
       <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] right-10 bottom-10 md:block'></header>
       <CustomTitle title='My Skills' />
       <section className='w-full px-5 sm:px-8 md:px-12 lg:px-0 max-w-screen-lg lg:max-w-screen-xl mx-auto relative'>
-        <article className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-white pt-15 lg:pt-29 lg:max-w-none max-w-2xl md:max-w-3xl mx-auto'>
+        <article className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 text-white py-15 lg:py-29 lg:max-w-none max-w-2xl md:max-w-3xl mx-auto'>
           {skills.map((skill) => (
             <SkillCircle
               key={skill.skill}

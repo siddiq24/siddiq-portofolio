@@ -75,7 +75,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className='relative flex justify-between px-12 py-2'>
+    <div className='relative flex justify-between md:px-12 py-2 snap-start'>
       <div ref={scope} className='relative flex items-center justify-center '>
         <button
           onClick={() => setIsOpen(!isOpen)}

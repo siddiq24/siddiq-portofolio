@@ -1,20 +1,26 @@
 import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import CostumTitle from './CustomTitle';
 import { experience, education } from './data/config';
 
 const SectionItem = ({ title, subtitle, description, year, detail, icon }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { triggerOnce: true, threshold: 0.5 });
+
   return (
     <motion.article
-      className='relative flex flex-col items-center justify-center w-full p-6 border rounded-lg shadow-lg bg-[#ffffff29] border-amber-300 transition-transform duration-300'
+      className='relative flex flex-col items-center justify-center w-full p-6 border rounded-lg shadow-lg bg-[#ffffff29] border-amber-300'
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: '20%' }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.9 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20, duration: 3 }}
     >
-      <div className='absolute top-[-2rem] left-1/2 transform -translate-x-1/2 w-16 h-16 p-2 bg-light dark:bg-dark rounded-full shadow-md flex items-center justify-center'>
+
+      <div className='absolute top-[-2rem] left-1/2 transform -translate-x-1/2 w-16 h-16 p-2 bg-light dark:bg-dark flex items-center justify-center'>
         <img src={icon} alt={title} className='w-full h-full object-contain' />
       </div>
       <h3 className='mt-4 text-xl font-bold text-white text-center'>{title}</h3>
@@ -28,7 +34,7 @@ const SectionItem = ({ title, subtitle, description, year, detail, icon }) => {
 
 const EducationAndExperience = () => {
   return (
-    <>
+    <section className='w-full min-h-screen text-white px-4 snap-start' id='education'>
       <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] left-10 top-0  md:block
             '></header>
       <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] right-10 bottom-10  md:block
@@ -64,7 +70,7 @@ const EducationAndExperience = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 

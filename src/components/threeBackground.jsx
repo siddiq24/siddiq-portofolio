@@ -3,113 +3,110 @@ import * as THREE from 'three';
 
 const ThreeBackground = () => {
     const canvasRef = useRef(null);
+
     useEffect(() => {
-        const textureLoader = new THREE.TextureLoader();
-        const starTexture = textureLoader.load('../public/star.png');
-        const material = new THREE.PointsMaterial({ 
-            map: starTexture, 
-            size: 20, 
-            transparent: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false 
-        });
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.position.z = 3;
-        camera.lookAt(scene.position);
-        
-        // State untuk mouse
-        let isMouseDown = false;
-        let mouseX = 0;
-        let mouseY = 0;
-        
-        // Star Field di sekitar galaxy
-        const geometry = new THREE.BufferGeometry();
-        const starCount = 5000;
-        const positions = new Float32Array(starCount * 3);
-        const radius = 2000;
-        for (let i = 0; i < starCount; i++) {
-            const theta = Math.random() * 2 * Math.PI;
-            const r = radius * Math.sqrt(Math.random());
-            positions[i * 3] = r * Math.cos(theta);
-            positions[i * 3 + 1] = r * Math.sin(theta);
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 4000;
-        }
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        
-        const starField = new THREE.Points(geometry, material);
-        scene.add(starField);
-        starTexture.onError = (err) => {
-            console.error('Gagal memuat tekstur:', err);
-        };
-    
-        // Mouse Controls
+        const canvas = canvasRef.current;
+        let renderer, scene, camera, starField;
+
         const handleMouseDown = (e) => {
             isMouseDown = true;
             mouseX = e.clientX;
             mouseY = e.clientY;
         };
-    
-        const handleMouseUp = () => {
-            isMouseDown = false;
-        };
-    
+
+        const handleMouseUp = () => { isMouseDown = false; };
+
         const handleMouseMove = (e) => {
-            if (isMouseDown) {
-                const deltaX = (e.clientX - mouseX) * 0.001;
-                const deltaY = (e.clientY - mouseY) * -0.001;
+            const deltaX = (e.clientX - mouseX) * 0.0005;
+            const deltaY = (e.clientY - mouseY) * -0.0005;
+            if (starField) {
                 starField.rotation.y -= deltaX;
                 starField.rotation.x += deltaY;
-                camera.lookAt(scene.position);
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            } else {
-                const deltaX = (e.clientX - mouseX) * 0.0002;
-                const deltaY = (e.clientY - mouseY) * -0.0002;
-                starField.rotation.y -= deltaX;
-                starField.rotation.x += deltaY;
-                camera.lookAt(scene.position);
-                mouseX = e.clientX;
-                mouseY = e.clientY;
+            }
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        };
+
+        const handleWheel = (e) => {
+            if (starField) {
+                starField.rotation.x += e.deltaY * 0.002;
             }
         };
-    
-        // Scroll untuk vertikal
-        const handleWheel = (e) => {
-            starField.rotation.x += e.deltaY * 0.002;
-            // camera.lookAt(scene.position);
+
+        let isMouseDown = false, mouseX = 0, mouseY = 0;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            if (starField) {
+                starField.rotation.x += 0.001;
+                starField.rotation.y += 0.001;
+            }
+            renderer?.render(scene, camera);
         };
-    
-        // Event listeners
+
+        const initScene = (starTexture) => {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.z = 3;
+
+            renderer = new THREE.WebGLRenderer({ canvas, preserveDrawingBuffer: false });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.debug.checkShaderErrors = true;
+
+            const material = new THREE.PointsMaterial({ 
+                map: starTexture, 
+                size: 20, 
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false 
+            });
+
+            const geometry = new THREE.BufferGeometry();
+            const starCount = 3000;
+            const positions = new Float32Array(starCount * 3);
+            const radius = 2000;
+
+            for (let i = 0; i < starCount; i++) {
+                const theta = Math.random() * 2 * Math.PI;
+                const r = radius * Math.sqrt(Math.random());
+                positions[i * 3] = r * Math.cos(theta);
+                positions[i * 3 + 1] = r * Math.sin(theta);
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 4000;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            starField = new THREE.Points(geometry, material);
+            scene.add(starField);
+
+            animate();
+        };
+
+        const textureLoader = new THREE.TextureLoader();
+        textureLoader.load(
+            '/star.png',
+            (texture) => {
+                initScene(texture);
+            },
+            undefined,
+            (error) => {
+                console.error('❌ Texture load error:', error);
+            }
+        );
+
         window.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mouseup', handleMouseUp);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('wheel', handleWheel);
-    
-        // Animation loop
-        const animate = () => {
-            requestAnimationFrame(animate);
-    
-            // Rotasi untuk efek spiral galaksi
-            starField.rotation.x += 0.001;
-            starField.rotation.y += 0.001;
-    
-            renderer.render(scene, camera);
-        };
-    
-        animate();
-    
-        // Cleanup
+
         return () => {
             window.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('wheel', handleWheel);
+            renderer?.dispose?.();
         };
     }, []);
-    
+
     return (
         <canvas
             ref={canvasRef}
