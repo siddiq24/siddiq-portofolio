@@ -28,7 +28,8 @@ const SocialButtons = () => {
     return (
         <div className='md:flex ml-10 flex-col items-center border border-amber-300 bg-[#ffffff29] rounded-3xl space-y-11 p-3 max-h-[506px] md:max-h-[386px] hidden '>
             {socialIcons.map((icon) => (
-                <button key={icon.id}>
+                <a key={icon.id} href={icon.url} target="_blank" rel="noopener noreferrer"
+                    className='w-full h-full'>
                     <svg viewBox={icon.viewBox} width={40} height={40}>
                         <motion.path
                             d={icon.path}
@@ -41,7 +42,7 @@ const SocialButtons = () => {
                             whileHover='hover'
                         />
                     </svg>
-                </button>
+                </a>
             ))}
         </div>
     );

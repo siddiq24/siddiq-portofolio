@@ -6,7 +6,7 @@ import CostumTitle from './CustomTitle';
 const ProjectSection = () => {
   const [positions, setPositions] = useState(projects.map((_, i) => i));
   const [delay, setDelay] = useState(3000);
-  const [intervalId, setIntervalId] = useState(null);
+  const [, setIntervalId] = useState(null);
 
   const handleCardClick = (clickedIndex) => {
     const total = projects.length;
@@ -38,10 +38,10 @@ const ProjectSection = () => {
   }, [delay]);
 
   return (
-    <section className="w-full text-white px-4 snap-start" id="project">
+    <section className="w-full border border-white/0 lg:h-screen text-white snap-start" id="work">
       <CostumTitle title="My Imagine Projects" />
 
-      <div className="grid grid-cols-8 grid-rows-6 md:grid-rows-2 gap-4 w-full h-[400px] md:h-[600px] px-4 mt-11 md:mt-0 top-8 md:p-8">
+      <div className="grid grid-cols-8 grid-rows-6 md:grid-rows-2 gap-4 w-full h-[400px] md:h-[590px] px-4 mt-11 md:mt-0 md:p-8">
         {positions.map((cardIndex, position) => {
           const card = projects[cardIndex];
           const isMain = position === 0;

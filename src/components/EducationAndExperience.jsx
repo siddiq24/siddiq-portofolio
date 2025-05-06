@@ -1,14 +1,9 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import CostumTitle from './CustomTitle';
 import { experience, education } from './data/config';
 
 const SectionItem = ({ title, subtitle, description, year, detail, icon }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { triggerOnce: true, threshold: 0.5 });
-
   return (
     <motion.article
       className='relative flex flex-col items-center justify-center w-full p-6 border rounded-lg shadow-lg bg-[#ffffff29] border-amber-300'
@@ -34,7 +29,7 @@ const SectionItem = ({ title, subtitle, description, year, detail, icon }) => {
 
 const EducationAndExperience = () => {
   return (
-    <section className='w-full min-h-screen text-white px-4 snap-start' id='education'>
+    <section className='w-full text-white border border-white/0 px-4 snap-start' id='experience'>
       <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] left-10 top-0  md:block
             '></header>
       <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] right-10 bottom-10  md:block
@@ -42,7 +37,7 @@ const EducationAndExperience = () => {
       <div className=' bg-light dark:bg-dark'>
         <CostumTitle title="Education & Experience" />
         <div className=' pt-20 px-8 pb-8'>
-          <div className='grid grid-cols-1 gap-15 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-15 md:grid-cols-2'>
             {education.map((item) => (
               <SectionItem
                 key={item.id}
@@ -55,7 +50,7 @@ const EducationAndExperience = () => {
               />
             ))}
           </div>
-          <div className='mt-15 grid grid-cols-1 gap-15 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='mt-15 grid grid-cols-1 gap-15 md:grid-cols-2 lg:grid-cols-3 md:snap-center'>
             {experience.map((item) => (
               <SectionItem
                 key={item.id}

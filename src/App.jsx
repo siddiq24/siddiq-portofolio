@@ -11,7 +11,7 @@ import './App.css'
 
 function App() {
   return (
-    <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
+    <div className="overflow-y-scroll border-r snap-y snap-mandatory h-[93vh] md:h-screen">
       <ThreeBackground />
       <Navbar />
       <HeroSection />
@@ -20,6 +20,9 @@ function App() {
       <EducationAndExperience />
       <ProjectSection />
       <ContactUs />
+      <footer className="text-center text-white/70 text-sm py-4 snap-end">
+        &copy; {new Date().getFullYear()} Sidik Wisnu Sasmito. All rights reserved.
+      </footer>
     </div>
   )
 }

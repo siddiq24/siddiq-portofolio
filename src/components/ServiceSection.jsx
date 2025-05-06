@@ -6,7 +6,7 @@ import { services } from './data/config'
 
 export default function ServiceSection() {
     return (
-        <section className='relative mt-40 min-h-screen snap-start' id='services'>
+        <section className='relative pt-0 border border-white/0 pb-10 snap-start' id='services'>
             <CustomTitle title='What I Offer?' />
             <section className='relative grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 p-16 '>
                 <header className='absolute w-1/2 aspect-[16/5] -skew-x-12 rounded-full bg-gradient-to-r from-blue-600 via-blue-800 to-amber-200 opacity-20 blur-[100px] left-10 top-0  md:block

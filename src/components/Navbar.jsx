@@ -70,7 +70,7 @@ const Navbar = () => {
     { id: 'services', text: 'What I Offer' },
     { id: 'projects', text: 'My Skill' },
     { id: 'experience', text: 'Education & Experience' },
-    { id: 'work', text: 'My Work' },
+    { id: 'work', text: 'My Projects' },
     { id: 'contact', text: 'Contact' }
   ];
 
@@ -79,7 +79,7 @@ const Navbar = () => {
       <div ref={scope} className='relative flex items-center justify-center '>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className='absolute top-4 z-40 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-amber-300 to-blue-600 flex items-center justify-center'
+          className='fixed top-4 z-40 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-amber-300 to-blue-600 flex items-center justify-center'
           style={{ 
             boxShadow: isOpen ? '0 0 22px rgba(255, 255, 255, 0.8)' : '0 0 22px rgba(138, 43, 226, 1)'
           }}
@@ -118,10 +118,10 @@ const Navbar = () => {
           </ul>
         </nav>
       </div>
-      <div className='font-bold text-2xl text-white  right-8 my-5 px-8 lg:pr-16 '>
+      <a href='https://www.instagram.com/devloft_production?igsh=MW85M2trM3JjbmIxZA==' className='font-bold text-2xl text-white  right-8 my-5 px-8 lg:pr-16 '>
         <div className=''>DEVLOFT</div>
         <div className='text-[16px] transform -translate-y-2 '>PRODUCTION</div>
-      </div>
+      </a>
     </div>
   );
 }
